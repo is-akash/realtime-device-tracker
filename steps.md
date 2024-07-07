@@ -1,10 +1,10 @@
 -   Check if the browser supports geolocation
 
--   Set options for high accuracy, a 5-second timeout, and no caching.
-
 -   Use watchPosition to track the users location continuously.
 
 -   Emit the latitude and longitude via a socket with "send-location" channel. Log any errors to the console.
+
+-   Set options for high accuracy, a 5-second timeout, and no caching.
 
 -   Initialize a map centered at coordinates (0, 0) with a zoom level of 15 using Leaflet. Add OpenStreetMap tiles to the map.
 

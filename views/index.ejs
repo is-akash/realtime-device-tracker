@@ -6,6 +6,10 @@
 
         <title>Realtime Device Tracker</title>
         <meta name="description" content="Page description" />
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self' http: https:; img-src 'self' https: data:; child-src 'none'; script-src 'self' http: https:;"
+        />
 
         <link
             href="https://fonts.googleapis.com/css?family=Montserrat"
@@ -21,7 +25,7 @@
         />
     </head>
     <body>
-        <div id="map">map</div>
+        <div id="map"></div>
 
         <!-- script -->
         <script
