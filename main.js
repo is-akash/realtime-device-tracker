@@ -17,18 +17,36 @@ const __dirname = path.dirname(__filename);
 
 dotenv.config();
 app.set("view engine", "ejs");
-app.set(express.static(path.join(__dirname, "public")));
 
 app.use(express.json());
-app.use(helmet());
+app.use(express.static(path.join(__dirname, "/public")));
+app.use(
+    helmet({
+        contentSecurityPolicy: {
+            useDefaults: true,
+            directives: {
+                "script-src": [
+                    "self",
+                    "https://cdnjs.cloudflare.com",
+                    "https://cdn.socket.io",
+                    "http://localhost:3000",
+                ],
+            },
+        },
+    })
+);
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("common"));
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
+io.on("connection", (socket) => {
+    console.log("connected");
+});
+
 app.get("/", (req, res) => {
-    res.send({ welcome: "Akash Debnath" });
+    res.render("index");
 });
 
 const PORT = process.env.PORT || 3000;
